@@ -70,7 +70,7 @@ class HomeScreenState extends State<HomeScreen> {
               child: Container(
                 width: 375,
                 height: 375,
-                color: Colors.blue,
+                color: const Color.fromARGB(255, 0, 0, 0),
                 child: CalendarWidget(onDateSelected: _onDateSelected),
               ),
             ),
@@ -89,7 +89,7 @@ class HomeScreenState extends State<HomeScreen> {
               child: Container(
                 width: 400,
                 height: 375,
-                color: Colors.green,
+                color: const Color.fromARGB(255, 0, 0, 0),
                 child: DailyListWidget(selectedDate: _selectedDate),
               ),
             ),
@@ -108,7 +108,7 @@ class HomeScreenState extends State<HomeScreen> {
               child: Container(
                 width: 375,
                 height: 375,
-                color: Colors.orange,
+                color: const Color.fromARGB(255, 0, 0, 0),
                 child: const TimersWidget(),
               ),
             ),
@@ -127,7 +127,7 @@ class HomeScreenState extends State<HomeScreen> {
               child: Container(
                 width: 400,
                 height: 350,
-                color: Colors.purple,
+                color: const Color.fromARGB(255, 0, 0, 0),
                 child: const ChecklistWidget(),
               ),
             ),
