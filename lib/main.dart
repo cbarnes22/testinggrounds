@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -15,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           //primarySwatch: Colors.deepPurple,
           ),
-      darkTheme: ThemeData.dark(),
+      //darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.dark, // Use dark mode
       home: const HomeScreen(),
     );
