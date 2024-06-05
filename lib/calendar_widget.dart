@@ -36,7 +36,7 @@ class CalendarWidgetState extends State<CalendarWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: const Color.fromARGB(255, 0, 0, 0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -100,7 +100,9 @@ class DateButton extends StatelessWidget {
           child: Text(
             '${date.day}',
             style: TextStyle(
-              color: isSelected ? Colors.white : Colors.black,
+              color: isSelected
+                  ? Colors.white
+                  : const Color.fromARGB(255, 225, 222, 222),
             ),
           ),
         ),
