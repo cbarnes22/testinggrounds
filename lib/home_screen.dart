@@ -70,7 +70,7 @@ class HomeScreenState extends State<HomeScreen> {
               child: Container(
                 width: 375,
                 height: 375,
-                color: const Color.fromARGB(255, 0, 0, 0),
+                color: Color.fromARGB(255, 40, 6, 50),
                 child: CalendarWidget(onDateSelected: _onDateSelected),
               ),
             ),

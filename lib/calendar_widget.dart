@@ -12,20 +12,6 @@ class CalendarWidget extends StatefulWidget {
 class CalendarWidgetState extends State<CalendarWidget> {
   DateTime _selectedDate = DateTime.now();
 
-  void _previousMonth() {
-    setState(() {
-      _selectedDate = DateTime(_selectedDate.year, _selectedDate.month - 1);
-    });
-    widget.onDateSelected(_selectedDate);
-  }
-
-  void _nextMonth() {
-    setState(() {
-      _selectedDate = DateTime(_selectedDate.year, _selectedDate.month + 1);
-    });
-    widget.onDateSelected(_selectedDate);
-  }
-
   void onDateSelected(DateTime date) {
     setState(() {
       _selectedDate = date;
@@ -35,43 +21,26 @@ class CalendarWidgetState extends State<CalendarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color.fromARGB(255, 0, 0, 0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.chevron_left),
-                onPressed: _previousMonth,
-              ),
-              Text(
-                '${_selectedDate.year}/${_selectedDate.month}',
-                style: const TextStyle(fontSize: 20),
-              ),
-              IconButton(
-                icon: const Icon(Icons.chevron_right),
-                onPressed: _nextMonth,
-              ),
-            ],
-          ),
-          Table(
-            children: _calendarBuilder(),
-          ),
-        ],
+    return GridView.builder(
+      shrinkWrap: true,
+      itemCount: DateTime(_selectedDate.year, _selectedDate.month + 1, 0).day,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 7,
       ),
+      itemBuilder: (context, index) {
+        DateTime date =
+            DateTime(_selectedDate.year, _selectedDate.month, index + 1);
+        bool isSelected = date.day == _selectedDate.day &&
+            date.month == _selectedDate.month &&
+            date.year == _selectedDate.year;
+
+        return DateButton(
+          date: date,
+          isSelected: isSelected,
+          onTap: () => onDateSelected(date),
+        );
+      },
     );
-  }
-
-  List<TableRow> _calendarBuilder() {
-    List<TableRow> calendar = [];
-
-    // TODO: Implement calendar building logic
-    // This should generate a table of DateButtons for the current month
-
-    return calendar;
   }
 }
 
@@ -93,16 +62,14 @@ class DateButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: isSelected ? Colors.blue : null,
-          shape: BoxShape.circle,
+          border:
+              isSelected ? Border.all(color: Colors.blue, width: 2.0) : null,
         ),
         child: Center(
           child: Text(
             '${date.day}',
             style: TextStyle(
-              color: isSelected
-                  ? Colors.white
-                  : const Color.fromARGB(255, 225, 222, 222),
+              color: isSelected ? Colors.blue : Colors.black,
             ),
           ),
         ),
